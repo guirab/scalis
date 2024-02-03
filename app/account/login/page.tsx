@@ -1,6 +1,7 @@
 "use client";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
+import { IoMdArrowBack } from "react-icons/io";
 
 import { login } from "../../actions";
 import { AccountsContext } from "@/store/context";
@@ -30,6 +31,15 @@ export default function Login() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24 relative">
+      <div className="w-full pb-12">
+        <span
+          className="flex items-center text-2xl cursor-pointer w-fit"
+          onClick={() => router.back()}
+        >
+          <IoMdArrowBack />
+          Back
+        </span>
+      </div>
       <div className="bg-white bg-opacity-30 rounded-lg h-fit w-full p-4">
         <h1 className="text-5xl">Login</h1>
         <form action={onClick} className="flex flex-col w-full gap-y-4 mt-4">
