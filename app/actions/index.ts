@@ -8,3 +8,13 @@ export async function create(formData: FormData) {
     body: JSON.stringify(Object.fromEntries(formData)),
   });
 }
+
+export async function login(formData: FormData) {
+  return await fetch("http://localhost:3000/api/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(Object.fromEntries(formData)),
+  }).then((res:any) => {return res.json()});
+}

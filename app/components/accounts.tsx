@@ -1,17 +1,19 @@
 "use client";
+import { AccountsContext } from "@/store/context";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function Accounts() {
-  const [accounts, setAccounts] = useState([]);
   const [showAccounts, setShowAccounts] = useState(false);
+  const { accounts, setAccounts } = useContext(AccountsContext);
 
   useEffect(() => {
+    if (!showAccounts) return;
     fetch("/api/accounts")
       .then((res) => res.json())
       .then((data) => setAccounts(data))
       .catch((error) => console.error("Error fetching accounts:", error));
-  }, []);
+  }, [showAccounts]);
 
   return (
     <div
@@ -31,7 +33,7 @@ export default function Accounts() {
             className="flex w-full mt-4 gap-x-4 justify-between"
           >
             <span>Username: {account.username}</span>
-            <Link href={`/account/${account.id}`}>View Account</Link>
+            <Link href="/account/login">View Account</Link>
           </div>
         ))}
       </div>
