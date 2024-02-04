@@ -63,7 +63,10 @@ export default function Login() {
           />
 
           {error && <span className="text-red-500">{error}</span>}
-          <button type="submit" className="bg-green-600 mt-4">
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
+          >
             Login
           </button>
         </form>

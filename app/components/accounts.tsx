@@ -17,7 +17,7 @@ export default function Accounts() {
 
   return (
     <div
-      className="flex items-center flex-col w-full mt-4 group group-[data-show=true]"
+      className="flex items-center flex-col w-fit mt-4 group group-[data-show=true] bg-white bg-opacity-30 rounded-lg h-fit p-4"
       data-show={showAccounts}
     >
       <span

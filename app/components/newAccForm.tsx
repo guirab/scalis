@@ -1,17 +1,36 @@
 "use client";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { create } from "../actions";
+import { InputCurrency } from "./inputCurrency";
 
 export default function NewAccForm() {
   const [newAcc, setNewAcc] = useState(false);
+  const [checking, setChecking] = useState<string>("");
+  const [savings, setSavings] = useState<string>("");
 
   async function onClick(e: FormData) {
-    await create(e).then(() => setNewAcc(false));
+    const username = Object.fromEntries(e).username.toString();
+    const password = Object.fromEntries(e).password.toString();
+
+    const checking = parseFloat(
+      Object.fromEntries(e)
+        .checking.toString()
+        .replace(/[^0-9.]/g, "")
+    );
+
+    const savings = parseFloat(
+      Object.fromEntries(e)
+        .savings.toString()
+        .replace(/[^0-9.]/g, "")
+    );
+    await create({ username, password, checking, savings }).then(() =>
+      setNewAcc(false)
+    );
   }
 
   return (
     <div
-      className="flex flex-col items-center w-full mt-4 group group-[data-newacc=true]"
+      className="flex flex-col items-center h-fit mt-4 group group-[data-newacc=true] bg-white bg-opacity-30 rounded-lg w-fit p-4"
       data-newacc={newAcc}
     >
       <span
@@ -43,24 +62,23 @@ export default function NewAccForm() {
           className="text-black pl-2"
         />
         <label htmlFor="checking">Checking Balance</label>
-        <input
-          autoComplete="off"
-          type="number"
+        <InputCurrency
+          value={checking}
+          setValue={setChecking}
           name="checking"
           id="checking"
-          required
-          className="text-black pl-2"
         />
         <label htmlFor="savings">Savings Balance</label>
-        <input
-          autoComplete="off"
-          type="number"
+        <InputCurrency
+          value={savings}
+          setValue={setSavings}
           name="savings"
           id="savings"
-          required
-          className="text-black pl-2"
         />
-        <button type="submit" className="bg-green-600 mt-4">
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
+        >
           Create Account
         </button>
       </form>
