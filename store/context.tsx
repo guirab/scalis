@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  ReactNode,
-  createContext,
-  use,
-  useEffect,
-  useState,
-} from "react";
+import React, { ReactNode, createContext, useState } from "react";
 
 export const AccountsContext: React.Context<ContextType> = createContext(
   {} as ContextType

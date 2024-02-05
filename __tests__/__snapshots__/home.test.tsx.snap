@@ -1,0 +1,126 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Home > renders the title 1`] = `
+<div>
+  <main
+    class="flex min-h-screen flex-col items-center p-12 sm:p-24 justify-center sm:justify-start"
+  >
+    <h1
+      class="text-5xl"
+    >
+      Banking App
+    </h1>
+    <div
+      class="w-full flex justify-between flex-col sm:flex-row gap-y-4"
+    >
+      <div
+        class="flex flex-col items-center h-fit mt-4 group group-[data-newacc=true] bg-white bg-opacity-30 rounded-lg sm:w-fit w-full p-4"
+        data-newacc="false"
+        data-testid="new-acc-form"
+      >
+        <span
+          class="text-2xl cursor-pointer w-fit"
+        >
+          New Account
+        </span>
+        <form
+          class="flex flex-col group-data-[newacc=false]:hidden"
+        >
+          <label
+            for="username"
+          >
+            Username
+          </label>
+          <input
+            autocomplete="off"
+            class="text-black pl-2"
+            id="username"
+            name="username"
+            required=""
+            type="text"
+          />
+          <label
+            for="password"
+          >
+            Password
+          </label>
+          <input
+            autocomplete="off"
+            class="text-black pl-2"
+            id="password"
+            name="password"
+            required=""
+            type="password"
+          />
+          <label
+            for="checking"
+          >
+            Checking Balance
+          </label>
+          <div
+            class="relative w-full"
+          >
+            <span
+              class="absolute text-black left-px"
+            >
+              $ 
+            </span>
+            <input
+              autocomplete="off"
+              class="text-black pl-4 undefined w-full"
+              id="checking"
+              name="checking"
+              required=""
+              type="text"
+              value=""
+            />
+          </div>
+          <label
+            for="savings"
+          >
+            Savings Balance
+          </label>
+          <div
+            class="relative w-full"
+          >
+            <span
+              class="absolute text-black left-px"
+            >
+              $ 
+            </span>
+            <input
+              autocomplete="off"
+              class="text-black pl-4 undefined w-full"
+              id="savings"
+              name="savings"
+              required=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
+            type="submit"
+          >
+            Create Account
+          </button>
+        </form>
+      </div>
+      <div
+        class="flex items-center flex-col sm:w-fit w-full mt-4 group group-[data-show=true] bg-white bg-opacity-30 rounded-lg h-fit p-4"
+        data-show="false"
+        data-testid="accounts"
+      >
+        <span
+          class="text-2xl cursor-pointer w-fit"
+        >
+          Accounts
+        </span>
+        <div
+          class="flex flex-col w-full group-data-[show=false]:hidden"
+        />
+      </div>
+    </div>
+  </main>
+</div>
+`;

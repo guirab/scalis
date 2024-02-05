@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { create } from "../actions";
 import { InputCurrency } from "./inputCurrency";
 
@@ -8,30 +8,33 @@ export default function NewAccForm() {
   const [checking, setChecking] = useState<string>("");
   const [savings, setSavings] = useState<string>("");
 
-  async function onClick(e: FormData) {
-    const username = Object.fromEntries(e).username.toString();
-    const password = Object.fromEntries(e).password.toString();
+  async function onClick(event: FormEvent<HTMLFormElement>) {
+    const formData = new FormData(event.currentTarget);
+
+    const username = Object.fromEntries(formData).username.toString();
+    const password = Object.fromEntries(formData).password.toString();
 
     const checking = parseFloat(
-      Object.fromEntries(e)
+      Object.fromEntries(formData)
         .checking.toString()
         .replace(/[^0-9.]/g, "")
     );
 
     const savings = parseFloat(
-      Object.fromEntries(e)
+      Object.fromEntries(formData)
         .savings.toString()
         .replace(/[^0-9.]/g, "")
     );
-    await create({ username, password, checking, savings }).then(() =>
-      setNewAcc(false)
-    );
+
+    await create({ username, password, checking, savings });
+    setNewAcc(false);
   }
 
   return (
     <div
       className="flex flex-col items-center h-fit mt-4 group group-[data-newacc=true] bg-white bg-opacity-30 rounded-lg sm:w-fit w-full p-4"
       data-newacc={newAcc}
+      data-testid="new-acc-form"
     >
       <span
         className="text-2xl cursor-pointer w-fit"
@@ -40,7 +43,7 @@ export default function NewAccForm() {
         New Account
       </span>
       <form
-        action={onClick}
+        onSubmit={onClick}
         className="flex flex-col group-data-[newacc=false]:hidden"
       >
         <label htmlFor="username">Username</label>

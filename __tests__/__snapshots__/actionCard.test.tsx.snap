@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ActionCard > snapshot 1`] = `
+<div>
+  <div
+    class="block w-full mt-4 space-y-4 max-w-[240px]"
+    data-testid="deposit-view"
+  >
+    <div>
+      <label
+        for="deposit"
+      >
+        Into:  
+      </label>
+      <select
+        class="text-black pl-2 outline-none rounded-md w-full"
+        id="deposit"
+        name="deposit"
+      >
+        <option
+          value="checking"
+        >
+          Checking
+        </option>
+        <option
+          value="savings"
+        >
+          Savings
+        </option>
+      </select>
+      <div>
+        <label
+          for="currency-deposit"
+        >
+          Amount:  
+        </label>
+        <div
+          class="relative w-full"
+        >
+          <span
+            class="absolute text-black left-px"
+          >
+            $ 
+          </span>
+          <input
+            autocomplete="off"
+            class="text-black pl-4 text-black pl-2 appearance-none outline-none rounded-md w-full"
+            id="currency-deposit"
+            name="currency-deposit"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <button
+        class="capitalize bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
+      >
+        deposit
+      </button>
+    </div>
+  </div>
+</div>
+`;

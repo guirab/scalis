@@ -1,5 +1,5 @@
 "use client";
-import { AccountsContext } from "@/store/context";
+import { AccountsContext } from "../../store/context";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 
@@ -19,6 +19,7 @@ export default function Accounts() {
     <div
       className="flex items-center flex-col sm:w-fit w-full mt-4 group group-[data-show=true] bg-white bg-opacity-30 rounded-lg h-fit p-4"
       data-show={showAccounts}
+      data-testid="accounts"
     >
       <span
         className="text-2xl cursor-pointer w-fit"
@@ -27,15 +28,16 @@ export default function Accounts() {
         Accounts
       </span>
       <div className="flex flex-col w-full group-data-[show=false]:hidden">
-        {accounts.map((account: any) => (
-          <div
-            key={account.id}
-            className="flex w-full mt-4 gap-x-4 justify-between"
-          >
-            <span>Username: {account.username}</span>
-            <Link href="/account/login">View Account</Link>
-          </div>
-        ))}
+        {accounts &&
+          accounts.map((account: any) => (
+            <div
+              key={account.id}
+              className="flex w-full mt-4 gap-x-4 justify-between"
+            >
+              <span>Username: {account.username}</span>
+              <Link href="/account/login">View Account</Link>
+            </div>
+          ))}
       </div>
     </div>
   );

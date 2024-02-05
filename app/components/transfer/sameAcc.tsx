@@ -2,7 +2,7 @@
 import { useContext, useState } from "react";
 
 import { InputCurrency } from "../inputCurrency";
-import { AccountsContext } from "@/store/context";
+import { AccountsContext } from "../../../store/context";
 import { transferToSameAcc } from "../../actions";
 
 export const TransferSameAcc = ({ action, setOpen }: ActionCardType) => {

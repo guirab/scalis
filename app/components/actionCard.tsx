@@ -12,12 +12,16 @@ export const ActionCard: React.FC<React.HTMLProps<any> & ActionCardType> = ({
     deposit: <DepositView action={action} open={open} setOpen={setOpen} />,
     withdraw: <WithdrawView action={action} open={open} setOpen={setOpen} />,
     transfer: <TransferView action={action} open={open} setOpen={setOpen} />,
-  }[action || "deposit"];
+  }[action as string];
 
   return (
     <>
       {open && (
-        <div className="block w-full mt-4 space-y-4 max-w-[240px]" {...props}>
+        <div
+          className="block w-full mt-4 space-y-4 max-w-[240px]"
+          data-testid={`${action}-view`}
+          {...props}
+        >
           {currentView}
         </div>
       )}

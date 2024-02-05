@@ -2,7 +2,7 @@
 import { useContext, useState } from "react";
 
 import { InputCurrency } from "../inputCurrency";
-import { AccountsContext } from "@/store/context";
+import { AccountsContext } from "../../../store/context";
 import { transferToSameAcc } from "../../actions";
 
 export const DepositView = ({ action, setOpen }: ActionCardType) => {
@@ -46,10 +46,10 @@ export const DepositView = ({ action, setOpen }: ActionCardType) => {
 
   return (
     <div>
-      <label htmlFor={`${action}-deposit`}>Into: &nbsp;</label>
+      <label htmlFor="deposit">Into: &nbsp;</label>
       <select
-        name={`${action}-deposit`}
-        id={`${action}-deposit`}
+        name="deposit"
+        id="deposit"
         value={type}
         onChange={(e) => setType(e.target.value)}
         className="text-black pl-2 outline-none rounded-md w-full"
