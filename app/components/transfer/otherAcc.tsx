@@ -35,6 +35,10 @@ export const TransferOtherAcc = ({ action, setOpen }: ActionCardType) => {
   }, [accounts]);
 
   async function onClick() {
+    if (account.checking < parseFloat(amount.replace(/[^0-9.]/g, ""))) {
+      setError("Insufficient funds");
+      return;
+    }
     await transferToOtherAcc({
       amount: parseFloat(amount.replace(/[^0-9.]/g, "")),
       to: to || accountsOptions[0]?.value,

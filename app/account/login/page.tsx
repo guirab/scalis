@@ -50,7 +50,7 @@ export default function Login() {
             name="username"
             id="username"
             required
-            className="text-black"
+            className="text-black pl-2"
           />
           <label htmlFor="password">Password</label>
           <input
@@ -59,7 +59,7 @@ export default function Login() {
             name="password"
             id="password"
             required
-            className="text-black"
+            className="text-black pl-2"
           />
 
           {error && <span className="text-red-500">{error}</span>}

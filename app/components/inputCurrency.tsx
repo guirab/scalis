@@ -8,6 +8,7 @@ export const InputCurrency: React.FC<
     v = v.replace(/(?=(\d{3})+(\D))\B/g, ",");
     setValue(v);
   };
+
   return (
     <div className="relative w-full">
       <span className="absolute text-black left-px">$&nbsp;</span>
