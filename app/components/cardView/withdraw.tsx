@@ -5,7 +5,7 @@ import { InputCurrency } from "../inputCurrency";
 import { AccountsContext } from "../../../store/context";
 import { transferToSameAcc } from "../../actions";
 
-export const WithdrawView = ({ action, setOpen }: ActionCardType) => {
+export const WithdrawView = ({ setOpen }: ActionCardType) => {
   const [amount, setAmount] = useState("");
   const [type, setType] = useState("checking");
   const [error, setError] = useState("");
@@ -32,7 +32,7 @@ export const WithdrawView = ({ action, setOpen }: ActionCardType) => {
       return;
     }
     await transferToSameAcc({
-      action,
+      action: "withdraw",
       type: type as UpdateType["type"],
       amount: parseFloat(amount.replace(/[^0-9.]/g, "")),
       id: account.id,
@@ -53,10 +53,10 @@ export const WithdrawView = ({ action, setOpen }: ActionCardType) => {
 
   return (
     <div>
-      <label htmlFor={`${action}-withdraw`}>From: &nbsp;</label>
+      <label htmlFor="withdraw">From: &nbsp;</label>
       <select
-        name={`${action}-withdraw`}
-        id={`${action}-withdraw`}
+        name="withdraw"
+        id="withdraw"
         value={type}
         onChange={(e) => setType(e.target.value)}
         className="text-black pl-2 outline-none rounded-md w-full"
@@ -80,10 +80,10 @@ export const WithdrawView = ({ action, setOpen }: ActionCardType) => {
       </div>
       {error && <span className="text-red-500">{error}</span>}
       <button
-        className="capitalize bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
+        className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
         onClick={onClick}
       >
-        {action}
+        Withdraw
       </button>
     </div>
   );

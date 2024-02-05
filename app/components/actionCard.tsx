@@ -9,9 +9,9 @@ export const ActionCard: React.FC<React.HTMLProps<any> & ActionCardType> = ({
   ...props
 }) => {
   const currentView = {
-    deposit: <DepositView action={action} open={open} setOpen={setOpen} />,
-    withdraw: <WithdrawView action={action} open={open} setOpen={setOpen} />,
-    transfer: <TransferView action={action} open={open} setOpen={setOpen} />,
+    deposit: <DepositView open={open} setOpen={setOpen} />,
+    withdraw: <WithdrawView open={open} setOpen={setOpen} />,
+    transfer: <TransferView open={open} setOpen={setOpen} />,
   }[action as string];
 
   return (

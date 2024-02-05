@@ -1,8 +1,14 @@
-import { render, screen, fireEvent, cleanup } from "@testing-library/react";
+import {
+  render,
+  screen,
+  fireEvent,
+  cleanup,
+  waitFor,
+} from "@testing-library/react";
 import { afterEach, describe, expect, test, vitest } from "vitest";
 
-import NewAccForm from "../app/components/newAccForm";
-import { create } from "../app/actions";
+import NewAccForm from "../../app/components/newAccForm";
+import { create } from "../../app/actions";
 
 vitest.mock("../app/actions", () => ({
   create: vitest.fn(),
@@ -32,11 +38,13 @@ describe("NewAccForm", () => {
 
     fireEvent.click(createButton);
 
-    expect(create).toHaveBeenCalledWith({
-      username: "testuser",
-      password: "testpassword",
-      checking: 1000,
-      savings: 500,
+    waitFor(() => {
+      expect(create).toHaveBeenCalledWith({
+        username: "testuser",
+        password: "testpassword",
+        checking: 1000,
+        savings: 500,
+      });
     });
   });
 });

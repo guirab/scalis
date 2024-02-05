@@ -1,10 +1,7 @@
 import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import { afterEach, describe, expect, test, vitest } from "vitest";
 
-import { ActionCard } from "../app/components/actionCard";
-import { DepositView } from "../app/components/cardView/deposit";
-import { WithdrawView } from "../app/components/cardView/withdraw";
-import { TransferView } from "../app/components/cardView/transfer";
+import { ActionCard } from "../../app/components/actionCard";
 
 describe("ActionCard", () => {
   afterEach(() => {

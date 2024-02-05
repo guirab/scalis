@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, test, vitest } from "vitest";
 
-import Accounts from "../app/components/accounts";
+import Accounts from "../../app/components/accounts";
 
 describe("Accounts", () => {
   test("snapshot", () => {

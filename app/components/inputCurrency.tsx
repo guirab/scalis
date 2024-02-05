@@ -18,6 +18,7 @@ export const InputCurrency: React.FC<
         onChange={(e) => currencyMask(e)}
         value={value}
         name={props.name}
+        data-testid="currency-input"
         id={props.id}
         required
         className={`text-black pl-4 ${props.className} w-full`}

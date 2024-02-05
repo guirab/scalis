@@ -68,6 +68,7 @@ exports[`Home > renders the title 1`] = `
             <input
               autocomplete="off"
               class="text-black pl-4 undefined w-full"
+              data-testid="currency-input"
               id="checking"
               name="checking"
               required=""
@@ -91,6 +92,7 @@ exports[`Home > renders the title 1`] = `
             <input
               autocomplete="off"
               class="text-black pl-4 undefined w-full"
+              data-testid="currency-input"
               id="savings"
               name="savings"
               required=""

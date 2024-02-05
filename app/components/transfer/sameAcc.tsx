@@ -5,7 +5,7 @@ import { InputCurrency } from "../inputCurrency";
 import { AccountsContext } from "../../../store/context";
 import { transferToSameAcc } from "../../actions";
 
-export const TransferSameAcc = ({ action, setOpen }: ActionCardType) => {
+export const TransferSameAcc = ({ setOpen }: ActionCardType) => {
   const [amount, setAmount] = useState("");
   const [type, setType] = useState("checking");
   const [error, setError] = useState("");
@@ -25,26 +25,27 @@ export const TransferSameAcc = ({ action, setOpen }: ActionCardType) => {
 
   async function onClick() {
     if (
-      action !== "deposit" &&
       account[type as UpdateType["type"]] <
-        parseFloat(amount.replace(/[^0-9.]/g, ""))
+      parseFloat(amount.replace(/[^0-9.]/g, ""))
     ) {
       setError("Insufficient funds");
       return;
     }
 
     const payload: any = {
-      action,
+      action: "transfer",
       type: type as UpdateType["type"],
       amount: parseFloat(amount.replace(/[^0-9.]/g, "")),
       id: account.id,
     };
 
-    if (action === "transfer") {
-      payload["from"] = type;
-    }
-
-    await transferToSameAcc(payload)
+    await transferToSameAcc({
+      action: "transfer",
+      type: type as UpdateType["type"],
+      amount: parseFloat(amount.replace(/[^0-9.]/g, "")),
+      id: account.id,
+      from: type as UpdateType["type"],
+    })
       .then((data) => {
         if (data.error) {
           setError(data.error);
@@ -61,36 +62,32 @@ export const TransferSameAcc = ({ action, setOpen }: ActionCardType) => {
 
   return (
     <div>
-      {action === "transfer" && (
-        <div>
-          <label htmlFor={`${action}-same`}>From: &nbsp;</label>
-          <select
-            name={`${action}-same`}
-            id={`${action}-same`}
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-            className="text-black pl-2 outline-none rounded-md w-full"
-          >
-            {optionsAccount.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
-      <label htmlFor={`${action}-same`}>Into: &nbsp;</label>
+      <div>
+        <label htmlFor="same">From: &nbsp;</label>
+        <select
+          name="same"
+          id="same"
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+          className="text-black pl-2 outline-none rounded-md w-full"
+        >
+          {optionsAccount.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+      <label htmlFor="same">Into: &nbsp;</label>
       <select
-        name={`${action}-same`}
-        id={`${action}-same`}
+        name="same"
+        id="same"
         value={
-          action === "transfer"
-            ? optionsAccount.filter((option) => option.value !== type)[0].value
-            : type
+          optionsAccount.filter((option) => option.value !== type)[0].value
         }
         onChange={(e) => setType(e.target.value)}
         className="text-black pl-2 outline-none rounded-md w-full"
-        disabled={action === "transfer"}
+        disabled
       >
         {optionsAccount.map((option) => (
           <option key={option.value} value={option.value}>
@@ -111,10 +108,10 @@ export const TransferSameAcc = ({ action, setOpen }: ActionCardType) => {
       </div>
       {error && <span className="text-red-500">{error}</span>}
       <button
-        className="capitalize bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
+        className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
         onClick={onClick}
       >
-        {action}
+        Transfer
       </button>
     </div>
   );

@@ -62,7 +62,7 @@ export default function UserAccount() {
         </span>
       </div>
 
-      <h1 className="text-5xl">{account.username}`s Account</h1>
+      <h1 className="text-5xl">{account.username}&apos;s Account</h1>
       <div className="w-full flex flex-col mt-4 justify-start gap-y-4">
         <h2 className="text-2xl bg-blue-800 p-4 rounded-lg">
           Checking Balance:&nbsp;

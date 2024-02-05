@@ -5,7 +5,7 @@ import { InputCurrency } from "../inputCurrency";
 import { AccountsContext } from "../../../store/context";
 import { transferToSameAcc } from "../../actions";
 
-export const DepositView = ({ action, setOpen }: ActionCardType) => {
+export const DepositView = ({ setOpen }: ActionCardType) => {
   const [amount, setAmount] = useState("");
   const [type, setType] = useState("checking");
   const [error, setError] = useState("");
@@ -25,7 +25,7 @@ export const DepositView = ({ action, setOpen }: ActionCardType) => {
 
   async function onClick() {
     await transferToSameAcc({
-      action,
+      action: "deposit",
       type: type as UpdateType["type"],
       amount: parseFloat(amount.replace(/[^0-9.]/g, "")),
       id: account.id,
@@ -50,6 +50,7 @@ export const DepositView = ({ action, setOpen }: ActionCardType) => {
       <select
         name="deposit"
         id="deposit"
+        data-testid="deposit-select"
         value={type}
         onChange={(e) => setType(e.target.value)}
         className="text-black pl-2 outline-none rounded-md w-full"
@@ -73,10 +74,10 @@ export const DepositView = ({ action, setOpen }: ActionCardType) => {
       </div>
       {error && <span className="text-red-500">{error}</span>}
       <button
-        className="capitalize bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
+        className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
         onClick={onClick}
       >
-        {action}
+        Deposit
       </button>
     </div>
   );

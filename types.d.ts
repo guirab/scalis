@@ -30,7 +30,6 @@ type InputCurrencyType = {
 };
 
 type ActionCardType = {
-  action:string
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }

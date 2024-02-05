@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InputCurrency > snapshot 1`] = `
+<div>
+  <div
+    class="relative w-full"
+  >
+    <span
+      class="absolute text-black left-px"
+    >
+      $ 
+    </span>
+    <input
+      autocomplete="off"
+      class="text-black pl-4 undefined w-full"
+      data-testid="currency-input"
+      id="currency"
+      name="currency"
+      required=""
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;

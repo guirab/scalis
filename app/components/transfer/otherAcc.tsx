@@ -5,7 +5,7 @@ import { InputCurrency } from "../inputCurrency";
 import { AccountsContext } from "../../../store/context";
 import { transferToOtherAcc } from "../../actions";
 
-export const TransferOtherAcc = ({ action, setOpen }: ActionCardType) => {
+export const TransferOtherAcc = ({ setOpen }: ActionCardType) => {
   const [amount, setAmount] = useState("");
   const [to, setTo] = useState("");
   const [password, setPassword] = useState("");
@@ -61,26 +61,24 @@ export const TransferOtherAcc = ({ action, setOpen }: ActionCardType) => {
 
   return (
     <div>
-      {action === "transfer" && (
-        <div>
-          <label htmlFor={`${action}-other`}>To: &nbsp;</label>
-          <select
-            name={`${action}-other`}
-            id={`${action}-other`}
-            value={to || accountsOptions[0]?.value}
-            onChange={(e) => setTo(e.target.value)}
-            className="text-black pl-2 outline-none rounded-md w-full"
-          >
-            {accountsOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.value}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
+      <div>
+        <label htmlFor="other">To: &nbsp;</label>
+        <select
+          name="other"
+          id="other"
+          value={to || accountsOptions[0]?.value}
+          onChange={(e) => setTo(e.target.value)}
+          className="text-black pl-2 outline-none rounded-md w-full"
+        >
+          {accountsOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.value}
+            </option>
+          ))}
+        </select>
+      </div>
 
-      <label htmlFor={`${action}-other`}>Password: &nbsp;</label>
+      <label htmlFor="other">Password: &nbsp;</label>
       <input
         autoComplete="off"
         type="password"
@@ -103,10 +101,10 @@ export const TransferOtherAcc = ({ action, setOpen }: ActionCardType) => {
       </div>
       {error && <span className="text-red-500">{error}</span>}
       <button
-        className="capitalize bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
+        className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
         onClick={onClick}
       >
-        {action}
+        Transfer
       </button>
     </div>
   );
