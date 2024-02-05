@@ -19,7 +19,7 @@ export const InputCurrency: React.FC<
         name={props.name}
         id={props.id}
         required
-        className={`text-black pl-4 ${props.className}`}
+        className={`text-black pl-4 ${props.className} w-full`}
       />
     </div>
   );

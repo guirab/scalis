@@ -6,6 +6,10 @@ type AccountType = {
   savings: number;
 };
 
+type SelectType = { 
+  value:string
+}
+
 type NewAccountType = {
   username: string;
   password: string;
@@ -37,4 +41,12 @@ type UpdateType = {
   type: 'checking' | 'savings';
   id: number;
   from?: 'checking' | 'savings';
+}
+
+
+type TransferOtherAccType = {
+  amount: number;
+  to: string;
+  password: string;
+  id: number;
 }

@@ -45,7 +45,7 @@ export default function UserAccount() {
   }, [account]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-24 relative">
+    <main className="flex min-h-screen flex-col items-center relative p-12 sm:p-24 justify-center sm:justify-start">
       <div
         data-show={isLoading}
         className="data-[show=false]:hidden flex absolute inset-0 bg-black w-full h-full z-20 justify-center items-start text-6xl p-24"
@@ -69,11 +69,12 @@ export default function UserAccount() {
           {formatUSDollar.format(account.checking)}
         </h2>
         <h2 className="text-2xl bg-blue-800 p-4 rounded-lg">
-          Savings Balance: {formatUSDollar.format(account.savings)}
+          Savings Balance:&nbsp;
+          {formatUSDollar.format(account.savings)}
         </h2>
       </div>
       <h2 className="text-2xl mt-20 mb-12">What would you like to do?</h2>
-      <div className="w-full justify-between flex">
+      <div className="w-full justify-between flex flex-col sm:flex-row gap-y-4">
         <div className="flex flex-col bg-gray-500 p-4 rounded-md h-fit">
           <h2
             className="text-2xl cursor-pointer w-fit"

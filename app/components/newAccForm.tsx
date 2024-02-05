@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { create } from "../actions";
 import { InputCurrency } from "./inputCurrency";
 
@@ -30,7 +30,7 @@ export default function NewAccForm() {
 
   return (
     <div
-      className="flex flex-col items-center h-fit mt-4 group group-[data-newacc=true] bg-white bg-opacity-30 rounded-lg w-fit p-4"
+      className="flex flex-col items-center h-fit mt-4 group group-[data-newacc=true] bg-white bg-opacity-30 rounded-lg sm:w-fit w-full p-4"
       data-newacc={newAcc}
     >
       <span

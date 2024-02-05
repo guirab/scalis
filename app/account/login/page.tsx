@@ -30,7 +30,7 @@ export default function Login() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-24 relative">
+    <main className="flex min-h-screen flex-col items-center relative p-12 sm:p-24 justify-center sm:justify-start">
       <div className="w-full pb-12">
         <span
           className="flex items-center text-2xl cursor-pointer w-fit"
