@@ -22,6 +22,7 @@ export const TransferOtherAcc = ({ setOpen }: ActionCardType) => {
       }));
     } else {
       const data = await getAll();
+      console.log(data, "data");
       options = data?.map((account: AccountType) => ({
         value: account.username,
       }));
@@ -65,6 +66,7 @@ export const TransferOtherAcc = ({ setOpen }: ActionCardType) => {
         <select
           name="other"
           id="other"
+          data-testid="to-select"
           value={to || accountsOptions[0]?.value}
           onChange={(e) => setTo(e.target.value)}
           className="text-black pl-2 outline-none rounded-md w-full"
@@ -83,6 +85,7 @@ export const TransferOtherAcc = ({ setOpen }: ActionCardType) => {
         type="password"
         name="password"
         id="password"
+        data-testid="password-input"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required

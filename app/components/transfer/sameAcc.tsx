@@ -60,6 +60,7 @@ export const TransferSameAcc = ({ setOpen }: ActionCardType) => {
         <select
           name="same"
           id="same"
+          data-testid="from-select"
           value={type}
           onChange={(e) => setType(e.target.value)}
           className="text-black pl-2 outline-none rounded-md w-full"

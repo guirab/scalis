@@ -52,6 +52,7 @@ exports[`TransferView > snapshot 1`] = `
         </label>
         <select
           class="text-black pl-2 outline-none rounded-md w-full"
+          data-testid="from-select"
           id="same"
           name="same"
         >

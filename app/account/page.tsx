@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
 import { useRouter } from "next/navigation";
 
-import { AccountsContext } from "@/store/context";
+import { AccountsContext } from "../../store/context";
 import { ActionCard } from "../components/actionCard";
 
 export default function UserAccount() {
