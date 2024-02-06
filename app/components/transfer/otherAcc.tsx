@@ -22,7 +22,6 @@ export const TransferOtherAcc = ({ setOpen }: ActionCardType) => {
       }));
     } else {
       const data = await getAll();
-      console.log(data, "data");
       options = data?.map((account: AccountType) => ({
         value: account.username,
       }));
