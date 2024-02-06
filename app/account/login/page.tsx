@@ -1,10 +1,10 @@
 "use client";
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { IoMdArrowBack } from "react-icons/io";
 
 import { login } from "../../actions";
-import { AccountsContext } from "@/store/context";
+import { AccountsContext } from "../../../store/context";
 
 export default function Login() {
   const [error, setError] = useState<string>();
@@ -13,8 +13,13 @@ export default function Login() {
 
   const router = useRouter();
 
-  async function onClick(e: FormData) {
-    await login(e)
+  async function onClick(event: FormEvent<HTMLFormElement>) {
+    const formData = new FormData(event.currentTarget);
+
+    const username = Object.fromEntries(formData).username.toString();
+    const password = Object.fromEntries(formData).password.toString();
+
+    await login({ username, password })
       .then((data) => {
         if (data.error) {
           setError(data.error);
@@ -42,7 +47,7 @@ export default function Login() {
       </div>
       <div className="bg-white bg-opacity-30 rounded-lg h-fit w-full p-4">
         <h1 className="text-5xl">Login</h1>
-        <form action={onClick} className="flex flex-col w-full gap-y-4 mt-4">
+        <form onSubmit={onClick} className="flex flex-col w-full gap-y-4 mt-4">
           <label htmlFor="username">Username</label>
           <input
             autoComplete="off"

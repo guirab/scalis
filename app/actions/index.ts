@@ -16,13 +16,13 @@ export async function getAll() {
   )?.json();
 }
 
-export async function login(formData: FormData) {
+export async function login(formData: LoginType) {
   return await fetch("http://localhost:3000/api/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(Object.fromEntries(formData)),
+    body: JSON.stringify(formData),
   }).then((res:any) => {return res.json()});
 }
 

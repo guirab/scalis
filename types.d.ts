@@ -6,7 +6,7 @@ type AccountType = {
   savings: number;
 };
 
-type SelectType = { 
+type SelectType = {
   value:string
 }
 
@@ -16,6 +16,11 @@ type NewAccountType = {
   checking: number;
   savings: number;
 };
+
+type LoginType= {
+  username: string;
+  password: string;
+}
 
 type ContextType = {
   account: AccountType;
