@@ -17,7 +17,7 @@ type NewAccountType = {
   savings: number;
 };
 
-type LoginType= {
+type LoginType = {
   username: string;
   password: string;
 }

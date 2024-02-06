@@ -16,14 +16,15 @@ export async function getAll() {
   )?.json();
 }
 
-export async function login(formData: FormData) {
-  return await fetch("http://localhost:3000/api/login", {
+export async function login(formData: LoginType) {
+  return (
+    await fetch("http://localhost:3000/api/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(Object.fromEntries(formData)),
-  }).then((res:any) => {return res.json()});
+    body: JSON.stringify(formData),
+  })).json();
 }
 
 export async function transferToSameAcc({action, type, amount, id, from}: UpdateType) {
