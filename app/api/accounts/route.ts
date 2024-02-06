@@ -11,6 +11,9 @@ export async function GET() {
     });
   }
   const accounts = await db.all('SELECT * FROM accounts');
+  if(accounts.length === 0){
+    return NextResponse.json({error: 'No accounts found'});
+  }
   return NextResponse.json(accounts);
 }
 

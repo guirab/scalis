@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { InputCurrency } from "../inputCurrency";
 import { AccountsContext } from "../../../store/context";
-import { transferToOtherAcc } from "../../actions";
+import { getAll, transferToOtherAcc } from "../../actions";
 
 export const TransferOtherAcc = ({ setOpen }: ActionCardType) => {
   const [amount, setAmount] = useState("");
@@ -16,14 +16,13 @@ export const TransferOtherAcc = ({ setOpen }: ActionCardType) => {
 
   async function loadAccounts() {
     let options: any = [];
-    if (accounts.length !== 0) {
+    if (accounts && accounts.length !== 0) {
       options = accounts.map((account: AccountType) => ({
         value: account.username,
       }));
     } else {
-      const data = await fetch("/api/accounts");
-      const json = await data.json();
-      options = json.map((account: AccountType) => ({
+      const data = await getAll();
+      options = data?.map((account: AccountType) => ({
         value: account.username,
       }));
     }
@@ -60,7 +59,7 @@ export const TransferOtherAcc = ({ setOpen }: ActionCardType) => {
   }
 
   return (
-    <div>
+    <div data-testid="transfer-other-acc">
       <div>
         <label htmlFor="other">To: &nbsp;</label>
         <select

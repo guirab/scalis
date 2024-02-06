@@ -1,0 +1,61 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`WithdrawView > snapshot 1`] = `
+<div>
+  <div>
+    <label
+      for="withdraw"
+    >
+      From:  
+    </label>
+    <select
+      class="text-black pl-2 outline-none rounded-md w-full"
+      data-testid="withdraw-select"
+      id="withdraw"
+      name="withdraw"
+    >
+      <option
+        value="checking"
+      >
+        Checking
+      </option>
+      <option
+        value="savings"
+      >
+        Savings
+      </option>
+    </select>
+    <div>
+      <label
+        for="currency-withdraw"
+      >
+        Amount:  
+      </label>
+      <div
+        class="relative w-full"
+      >
+        <span
+          class="absolute text-black left-px"
+        >
+          $ 
+        </span>
+        <input
+          autocomplete="off"
+          class="text-black pl-4 text-black pl-2 appearance-none outline-none rounded-md w-full"
+          data-testid="currency-input"
+          id="currency-withdraw"
+          name="currency-withdraw"
+          required=""
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+    <button
+      class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
+    >
+      Withdraw
+    </button>
+  </div>
+</div>
+`;

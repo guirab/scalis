@@ -32,13 +32,6 @@ export const TransferSameAcc = ({ setOpen }: ActionCardType) => {
       return;
     }
 
-    const payload: any = {
-      action: "transfer",
-      type: type as UpdateType["type"],
-      amount: parseFloat(amount.replace(/[^0-9.]/g, "")),
-      id: account.id,
-    };
-
     await transferToSameAcc({
       action: "transfer",
       type: type as UpdateType["type"],
@@ -61,7 +54,7 @@ export const TransferSameAcc = ({ setOpen }: ActionCardType) => {
   }
 
   return (
-    <div>
+    <div data-testid="transfer-same-acc">
       <div>
         <label htmlFor="same">From: &nbsp;</label>
         <select

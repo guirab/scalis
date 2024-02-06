@@ -26,6 +26,7 @@ export const TransferView: React.FC<React.HTMLProps<any> & ActionCardType> = ({
                 This account
               </label>
               <input
+                data-testid="same-account"
                 type="radio"
                 id="same"
                 value="same"
@@ -38,6 +39,7 @@ export const TransferView: React.FC<React.HTMLProps<any> & ActionCardType> = ({
                 Other account
               </label>
               <input
+                data-testid="other-account"
                 type="radio"
                 id="other"
                 value="other"

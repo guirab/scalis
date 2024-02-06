@@ -1,12 +1,19 @@
 "use server";
 export async function create(formData: NewAccountType) {
-  await fetch("http://localhost:3000/api/accounts", {
+  return (
+    await fetch("http://localhost:3000/api/accounts", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(formData),
-  });
+  }))?.json();
+}
+
+export async function getAll() {
+  return (
+    await fetch("http://localhost:3000/api/accounts")
+  )?.json();
 }
 
 export async function login(formData: FormData) {

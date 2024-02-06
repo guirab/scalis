@@ -10,9 +10,11 @@ import { afterEach, describe, expect, test, vitest } from "vitest";
 import NewAccForm from "../../app/components/newAccForm";
 import { create } from "../../app/actions";
 
-vitest.mock("../app/actions", () => ({
-  create: vitest.fn(),
-}));
+global.fetch = vitest.fn();
+
+function createFetchResponse(data: any) {
+  return { json: () => new Promise((resolve) => resolve(data)) };
+}
 
 describe("NewAccForm", () => {
   afterEach(() => {
@@ -38,13 +40,27 @@ describe("NewAccForm", () => {
 
     fireEvent.click(createButton);
 
-    waitFor(() => {
-      expect(create).toHaveBeenCalledWith({
+    (fetch as any).mockResolvedValue(createFetchResponse({}));
+
+    const createData = await create({
+      username: "testuser",
+      password: "testpassword",
+      checking: 1000,
+      savings: 500,
+    });
+
+    expect(fetch).toHaveBeenCalledWith("http://localhost:3000/api/accounts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         username: "testuser",
         password: "testpassword",
         checking: 1000,
         savings: 500,
-      });
+      }),
     });
+    expect(createData).toStrictEqual({});
   });
 });

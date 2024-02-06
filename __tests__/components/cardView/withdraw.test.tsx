@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, cleanup } from "@testing-library/react";
-import { DepositView } from "../../../app/components/cardView/deposit";
+import { WithdrawView } from "../../../app/components/cardView/withdraw";
 import { afterEach, describe, expect, test, vitest } from "vitest";
 import { transferToSameAcc } from "../../../app/actions";
 
@@ -9,19 +9,19 @@ function createFetchResponse(data: any) {
   return { json: () => new Promise((resolve) => resolve(data)) };
 }
 
-describe("DepositView", () => {
+describe("WithdrawView", () => {
   afterEach(() => {
     cleanup();
   });
   test("snapshot", () => {
-    const { container } = render(<DepositView open setOpen={() => {}} />);
+    const { container } = render(<WithdrawView open setOpen={() => {}} />);
     expect(container).toMatchSnapshot();
   });
 
   test("updates the type state when the select value changes", () => {
-    render(<DepositView open setOpen={() => {}} />);
+    render(<WithdrawView open setOpen={() => {}} />);
 
-    const select = screen.getByTestId("deposit-select") as HTMLSelectElement;
+    const select = screen.getByTestId("withdraw-select") as HTMLSelectElement;
 
     fireEvent.change(select, {
       target: { value: "savings" },
@@ -35,12 +35,65 @@ describe("DepositView", () => {
   });
 
   test("updates the amount state when the input value changes", () => {
-    render(<DepositView open setOpen={() => {}} />);
+    render(<WithdrawView open setOpen={() => {}} />);
 
     const input = screen.getByLabelText("Amount:") as HTMLInputElement;
 
     fireEvent.change(input, { target: { value: "100" } });
     expect(input.value).toBe("1.00");
+  });
+
+  test("try to withdraw more than the account balance", async () => {
+    const response = {
+      id: 1,
+      username: "test",
+      password: "test",
+      checking: 1,
+      savings: 1,
+    };
+
+    vitest.mock("react", async () => {
+      return {
+        ...(await vitest.importActual("react")),
+        useContext: () => ({
+          account: { id: 1, username: "test", checking: 1, savings: 1 },
+        }),
+      };
+    });
+
+    render(<WithdrawView open setOpen={vitest.fn()} />);
+
+    const input = screen.getByLabelText("Amount:") as HTMLInputElement;
+    fireEvent.change(input, {
+      target: { value: "100" },
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: "Withdraw" }));
+
+    (fetch as any).mockResolvedValue(createFetchResponse(response));
+
+    const createData = await transferToSameAcc({
+      action: "withdraw",
+      type: "checking",
+      amount: 100,
+      id: 1,
+    });
+
+    expect(fetch).toHaveBeenCalledWith(
+      `http://localhost:3000/api/account/${response.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "withdraw",
+          type: "checking",
+          amount: 100,
+        }),
+      }
+    );
+    expect(createData).toStrictEqual(response);
   });
 
   test("calls the onClick function when the button is clicked", async () => {
@@ -61,19 +114,19 @@ describe("DepositView", () => {
       };
     });
 
-    render(<DepositView open setOpen={vitest.fn()} />);
+    render(<WithdrawView open setOpen={vitest.fn()} />);
 
     const input = screen.getByLabelText("Amount:") as HTMLInputElement;
     fireEvent.change(input, {
       target: { value: "100" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Deposit" }));
+    fireEvent.click(screen.getByRole("button", { name: "Withdraw" }));
 
     (fetch as any).mockResolvedValue(createFetchResponse(response));
 
     const createData = await transferToSameAcc({
-      action: "deposit",
+      action: "withdraw",
       type: "checking",
       amount: 100,
       id: 1,
@@ -87,7 +140,7 @@ describe("DepositView", () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          action: "deposit",
+          action: "withdraw",
           type: "checking",
           amount: 100,
         }),

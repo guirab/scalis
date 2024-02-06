@@ -55,6 +55,7 @@ export const WithdrawView = ({ setOpen }: ActionCardType) => {
     <div>
       <label htmlFor="withdraw">From: &nbsp;</label>
       <select
+        data-testid="withdraw-select"
         name="withdraw"
         id="withdraw"
         value={type}

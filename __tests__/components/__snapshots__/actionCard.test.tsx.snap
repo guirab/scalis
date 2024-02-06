@@ -14,6 +14,7 @@ exports[`ActionCard > snapshot 1`] = `
       </label>
       <select
         class="text-black pl-2 outline-none rounded-md w-full"
+        data-testid="deposit-select"
         id="deposit"
         name="deposit"
       >
@@ -55,9 +56,9 @@ exports[`ActionCard > snapshot 1`] = `
         </div>
       </div>
       <button
-        class="capitalize bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
+        class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full"
       >
-        deposit
+        Deposit
       </button>
     </div>
   </div>

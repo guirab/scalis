@@ -1,18 +1,33 @@
 "use client";
-import { AccountsContext } from "../../store/context";
-import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
+import Link from "next/link";
+
+import { AccountsContext } from "../../store/context";
+import { getAll } from "../actions";
 
 export default function Accounts() {
   const [showAccounts, setShowAccounts] = useState(false);
+  const [error, setError] = useState("");
+
   const { accounts, setAccounts } = useContext(AccountsContext);
+
+  async function fetchAccounts() {
+    await getAll()
+      .then((data) => {
+        if (data.error) {
+          setError(data.error);
+        } else {
+          setAccounts(data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching accounts:", error);
+      });
+  }
 
   useEffect(() => {
     if (!showAccounts) return;
-    fetch("/api/accounts")
-      .then((res) => res.json())
-      .then((data) => setAccounts(data))
-      .catch((error) => console.error("Error fetching accounts:", error));
+    fetchAccounts();
   }, [showAccounts]);
 
   return (
@@ -28,6 +43,7 @@ export default function Accounts() {
         Accounts
       </span>
       <div className="flex flex-col w-full group-data-[show=false]:hidden">
+        {error && <span className="text-red-500">{error}</span>}
         {accounts &&
           accounts.map((account: any) => (
             <div

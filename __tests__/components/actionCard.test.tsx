@@ -16,17 +16,17 @@ describe("ActionCard", () => {
 
   test("renders DepositView when action is 'deposit'", () => {
     render(<ActionCard action="deposit" open={true} setOpen={vitest.fn()} />);
-    expect(screen.getByRole("button").textContent).toBe("deposit");
+    expect(screen.getByRole("button").textContent).toBe("Deposit");
   });
 
   test("renders WithdrawView when action is 'withdraw'", () => {
     render(<ActionCard action="withdraw" open={true} setOpen={vitest.fn()} />);
-    expect(screen.getByRole("button").textContent).toBe("withdraw");
+    expect(screen.getByRole("button").textContent).toBe("Withdraw");
   });
 
   test("renders TransferView when action is 'transfer'", () => {
     render(<ActionCard action="transfer" open={true} setOpen={vitest.fn()} />);
-    expect(screen.getByRole("button").textContent).toBe("transfer");
+    expect(screen.getByRole("button").textContent).toBe("Transfer");
   });
 
   test("does not render any view when open is false", () => {
